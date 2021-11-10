@@ -7,8 +7,8 @@ public class User {
 
     Map<String, String> userData = new HashMap<>();
 
-    public Map<String, String> getUserData() {
-        return userData;
+    public String getUserData(String key) {
+        return userData.get(key);
     }
 
     public void putValue(String value1, String value2) {

@@ -13,21 +13,21 @@ public class RegisterPositive extends AbstractBaseTest {
 
         User user = DataProvider.getUser();
 
-        App().Pages().AuthenticationPage().fillEmailCreateAddress(user.getUserData().get("E-mail"));
+        App().Pages().AuthenticationPage().fillEmailCreateAddress(user.getUserData("E-mail"));
         App().Pages().AuthenticationPage().clickCreateAnAccountButton();
 
         App().Pages().CreateAnAccountPage().waitUntilGenderMaleRadioIsDisplayed();
-        App().Pages().CreateAnAccountPage().fillGender(user.getUserData().get("Gender"));
-        App().Pages().CreateAnAccountPage().fillCustomerFirstName(user.getUserData().get("First Name"));
-        App().Pages().CreateAnAccountPage().fillCustomerLastName(user.getUserData().get("Last Name"));
-        App().Pages().CreateAnAccountPage().fillPassword(user.getUserData().get("Password"));
-        App().Pages().CreateAnAccountPage().fillDateOfBirth(user.getUserData().get("Date of Birth"));
-        App().Pages().CreateAnAccountPage().fillCompany(user.getUserData().get("Company"));
-        App().Pages().CreateAnAccountPage().fillAddress(user.getUserData().get("Address"));
-        App().Pages().CreateAnAccountPage().fillCity(user.getUserData().get("City"));
-        App().Pages().CreateAnAccountPage().fillState(user.getUserData().get("State"));
-        App().Pages().CreateAnAccountPage().fillZip(user.getUserData().get("Zip"));
-        App().Pages().CreateAnAccountPage().fillHomePhone(user.getUserData().get("Home Phone"));
+        App().Pages().CreateAnAccountPage().fillGender(user.getUserData("Gender"));
+        App().Pages().CreateAnAccountPage().fillCustomerFirstName(user.getUserData("First Name"));
+        App().Pages().CreateAnAccountPage().fillCustomerLastName(user.getUserData("Last Name"));
+        App().Pages().CreateAnAccountPage().fillPassword(user.getUserData("Password"));
+        App().Pages().CreateAnAccountPage().fillDateOfBirth(user.getUserData("Date of Birth"));
+        App().Pages().CreateAnAccountPage().fillCompany(user.getUserData("Company"));
+        App().Pages().CreateAnAccountPage().fillAddress(user.getUserData("Address"));
+        App().Pages().CreateAnAccountPage().fillCity(user.getUserData("City"));
+        App().Pages().CreateAnAccountPage().fillState(user.getUserData("State"));
+        App().Pages().CreateAnAccountPage().fillZip(user.getUserData("Zip"));
+        App().Pages().CreateAnAccountPage().fillHomePhone(user.getUserData("Home Phone"));
 
         App().Pages().CreateAnAccountPage().register();
 

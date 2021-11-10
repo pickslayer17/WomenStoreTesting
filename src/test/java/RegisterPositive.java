@@ -7,7 +7,7 @@ public class RegisterPositive extends AbstractBaseTest {
 
 
     @Test
-    public void testJunit() throws InterruptedException {
+    public void registerUser() throws InterruptedException {
         App().Flow().navigateToUrl("http://automationpractice.com/");
         App().Pages().HomePage().clickSignInButton();
 

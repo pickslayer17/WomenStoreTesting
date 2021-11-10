@@ -3,7 +3,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 
-public class SignInPositive extends AbstractBaseTest {
+public class RegisterPositive extends AbstractBaseTest {
 
 
     @Test
@@ -13,7 +13,7 @@ public class SignInPositive extends AbstractBaseTest {
 
         User user = DataProvider.getUser();
 
-        App().Pages().AuthenticationPage().fillEmailAddress(user.getUserData().get("E-mail"));
+        App().Pages().AuthenticationPage().fillEmailCreateAddress(user.getUserData().get("E-mail"));
         App().Pages().AuthenticationPage().clickCreateAnAccountButton();
 
         App().Pages().CreateAnAccountPage().waitUntilGenderMaleRadioIsDisplayed();

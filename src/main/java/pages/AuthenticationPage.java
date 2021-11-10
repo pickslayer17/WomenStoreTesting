@@ -10,16 +10,33 @@ public class AuthenticationPage extends AbstractPage{
     }
 
     @FindBy(id = "email_create")
-    WebElement emailAddressInput;
-
+    WebElement emailCreateAddressInput;
     @FindBy(id = "SubmitCreate")
     WebElement createAnAccountButton;
 
-    public void fillEmailAddress(String text){
-        emailAddressInput.sendKeys(text);
+    @FindBy(id = "email")
+    WebElement emailInput;
+    @FindBy(id = "passwd")
+    WebElement passInput;
+    @FindBy(id = "SubmitLogin")
+    WebElement signInButton;
+
+
+    public void fillEmailCreateAddress(String text){
+        emailCreateAddressInput.sendKeys(text);
     }
 
     public void clickCreateAnAccountButton(){
         createAnAccountButton.click();
+    }
+
+    public void fillEmailAddress(String text){
+        emailInput.sendKeys(text);
+    }
+    public void fillPassword(String text){
+        passInput.sendKeys(text);
+    }
+    public void clickSignInButton(){
+        signInButton.click();
     }
 }

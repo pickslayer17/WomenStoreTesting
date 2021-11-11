@@ -26,4 +26,8 @@ public class AbstractPage {
         wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 
+    public void waitUntilUrlToBe(String expectedUrl, int timeSec){
+        WebDriverWait wait = new WebDriverWait(driver,timeSec);
+        wait.until(ExpectedConditions.urlToBe(expectedUrl));
+    }
 }

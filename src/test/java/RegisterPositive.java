@@ -31,9 +31,11 @@ public class RegisterPositive extends AbstractBaseTest {
 
         App().Pages().CreateAnAccountPage().register();
 
-        Assertions.assertEquals("Url of MyAccount Page doesn't corresponds",
+        App().Pages().MyAccountPage().waitPageUrlEqualsToCurrent();
+        Assertions.assertEquals(
                 App().Pages().MyAccountPage().getPAGE_URL(),
-                App().Flow().getCurrentUrl()
+                App().Flow().getCurrentUrl(),
+                "Url of MyAccount Page doesn't corresponds"
         );
 
     }

@@ -32,4 +32,9 @@ public class MyAccountPage extends AbstractPage{
         dressesLink.click();
 
     }
+
+    public void waitPageUrlEqualsToCurrent() {
+        waitUntilUrlToBe(PAGE_URL, 10);
+
+    }
 }

@@ -17,6 +17,7 @@ public class SignInPositive extends AbstractBaseTest{
         App().Pages().AuthenticationPage().fillPassword(user.getUserData("Password"));
         App().Pages().AuthenticationPage().clickSignInButton();
 
+        App().Pages().MyAccountPage().waitPageUrlEqualsToCurrent();
         Assertions.assertEquals(App().Pages().MyAccountPage().getPAGE_URL(), App().Flow().getCurrentUrl());
     }
 }

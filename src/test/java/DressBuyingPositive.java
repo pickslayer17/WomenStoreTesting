@@ -33,8 +33,8 @@ public class DressBuyingPositive extends AbstractBaseTest {
         String orderPageTotalPrice = App().Pages().OrderPages().SummaryOrderPage().getTotalProductPrice_tdText();
         String orderPageTotalShipping = App().Pages().OrderPages().SummaryOrderPage().getTotalShippingPriceText();
         Assertions.assertEquals(
-                "Price on the OrderPage doesn't corresponds price on the ProductPage",
-                productPagePrice, orderPagePrice
+                productPagePrice, orderPagePrice,
+                "Price on the OrderPage doesn't corresponds price on the ProductPage"
         );
         double orderPagePriceDouble = TextConverter.getDoubleValuePriceFromTextWith$(orderPagePrice);
         int orderPageQuantityInt = Integer.parseInt(orderPageQuantity.trim());

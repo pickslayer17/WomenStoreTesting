@@ -8,33 +8,32 @@ import org.openqa.selenium.support.FindBy;
 public class SummaryOrderPage extends OrderPage {
     @FindBy(id = "cart_summary")
     WebElement orderTable;
-    @FindBy(xpath = "//td/span[starts-with(@id ,'product_price')]")
+    @FindBy(xpath = "//div[@id='order-detail-content']/table//tbody/tr/td[4]/span")
     WebElement productPriceSpan;
-    @FindBy(xpath = "//input[starts-with(@name ,'quantity') and @type = 'text']")
-    WebElement quantitySpan;
-    @FindBy(xpath = "//td/span[starts-with(@id ,'total_product_price')]")
-    WebElement totalProductPriceSpan;
-    @FindBy(xpath = "//td[starts-with(@id ,'total_shipping')]")
+    @FindBy(xpath = "//div[@id='order-detail-content']/table//tbody/tr/td[5]/input[2]")
+    WebElement quantityInput;
+    @FindBy(xpath = "//div[@id='order-detail-content']/table//tbody/tr/td[6]/span")
+    WebElement totalSpan;
+    @FindBy(xpath = "//div[@id='order-detail-content']/table//tfoot/tr[3]/td[2]")
     WebElement totalShippingTd;
 
     public SummaryOrderPage(WebDriver driver) {
         super(driver);
     }
 
-    public String getProductPrice_tdText() {
+    public String getProductPriceSpanText() {
         return productPriceSpan.getText();
     }
 
-    public String getQuantity_tdText() {
-        return quantitySpan.getAttribute("value");
+    public String getQuantityInputText() {
+        return quantityInput.getAttribute("value");
     }
 
-    public String getTotalProductPrice_tdText() {
-        return totalProductPriceSpan.getText();
+    public String getTotalSpanText() {
+        return totalSpan.getText();
     }
 
-
-    public String getTotalShippingPriceText() {
+    public String getTotalShippingText() {
         return totalShippingTd.getText();
     }
 }

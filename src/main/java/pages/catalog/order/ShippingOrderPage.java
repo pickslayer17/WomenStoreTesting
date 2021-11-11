@@ -10,7 +10,7 @@ public class ShippingOrderPage extends OrderPage {
     WebElement agreeTermsCheckbox;
     @FindBy(xpath = "//div[@class='fancybox-skin']")
     WebElement youMustAgreePopupDiv;
-    @FindBy(xpath = "//a[@title='Close']")
+    @FindBy(xpath = "//div[@class='fancybox-skin']/a")
     WebElement youMustAgreePopupDivCloseButton;
 
     public ShippingOrderPage(WebDriver driver) {

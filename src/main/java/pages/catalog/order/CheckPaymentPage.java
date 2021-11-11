@@ -6,10 +6,8 @@ import org.openqa.selenium.support.FindBy;
 
 
 public class CheckPaymentPage extends OrderPage {
-    @FindBy(xpath = "//button[@type='submit' and contains(@class, 'button-medium')]")
+    @FindBy(xpath = "//div[@id='center_column']/form/p/button")
     WebElement confirmOrderButton;
-    @FindBy(xpath = "//div[@class='box cheque-box']")
-    WebElement paymentDescriptionDiv;
     @FindBy(xpath = "//span[@id='amount']")
     WebElement priceSpan;
 

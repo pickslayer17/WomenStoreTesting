@@ -22,7 +22,6 @@ public class DressBuyingPositive extends AbstractBaseTest {
 
         Assertions.assertEquals(App().Pages().MyAccountPage().getPAGE_URL(), App().Flow().getCurrentUrl());
 
-        App().Flow().setWindowMaximized();
         App().Pages().MyAccountPage().clickDressesLink();
         App().Pages().DressesCatalogPage().clickEveningDressesImgLink();
         App().Pages().EveningDressesCatalogPage().clickPrintedDress();
@@ -31,30 +30,30 @@ public class DressBuyingPositive extends AbstractBaseTest {
         App().Pages().ProductPage().clickProceedToCheckOutButton();
 
 //-----assertion block
-        String orderPagePrice = App().Pages().OrderPages().SummaryOrderPage().getProductPrice_tdText();
-        String orderPageQuantity = App().Pages().OrderPages().SummaryOrderPage().getQuantity_tdText();
-        String orderPageTotalPrice = App().Pages().OrderPages().SummaryOrderPage().getTotalProductPrice_tdText();
-        String orderPageTotalShipping = App().Pages().OrderPages().SummaryOrderPage().getTotalShippingPriceText();
+        String orderPageUnitPrice = App().Pages().OrderPages().SummaryOrderPage().getProductPriceSpanText();
+        String orderPageQuantity = App().Pages().OrderPages().SummaryOrderPage().getQuantityInputText();
+        String orderPageTotal = App().Pages().OrderPages().SummaryOrderPage().getTotalSpanText();
+        String orderPageTotalShipping = App().Pages().OrderPages().SummaryOrderPage().getTotalShippingText();
         Assertions.assertEquals(
-                productPagePrice, orderPagePrice,
+                productPagePrice, orderPageUnitPrice,
                 "Price on the OrderPage doesn't corresponds price on the ProductPage"
         );
-        double orderPagePriceDouble = TextConverter.getDoubleValuePriceFromTextWith$(orderPagePrice);
+        double orderPagePriceDouble = TextConverter.getDoubleValuePriceFromTextWith$(orderPageUnitPrice);
         int orderPageQuantityInt = Integer.parseInt(orderPageQuantity.trim());
-        double orderPageTotalPriceDouble = TextConverter.getDoubleValuePriceFromTextWith$(orderPageTotalPrice);
-        double orderPageShippingPrice = TextConverter.getDoubleValuePriceFromTextWith$(orderPageTotalShipping);
+        double orderPageTotalDouble = TextConverter.getDoubleValuePriceFromTextWith$(orderPageTotal);
+        double orderPageTotalShippingDouble = TextConverter.getDoubleValuePriceFromTextWith$(orderPageTotalShipping);
         Assertions.assertTrue(
-                orderPageTotalPriceDouble == orderPagePriceDouble * orderPageQuantityInt,
+                orderPageTotalDouble == orderPagePriceDouble * orderPageQuantityInt,
                 "Total price on OrderPage doesn't correspond price on ProductPage"
         );
         double TOTAL_PRICE = orderPagePriceDouble * orderPageQuantityInt;
         Assertions.assertTrue(
-                orderPageTotalPriceDouble == TOTAL_PRICE,
+                orderPageTotalDouble == TOTAL_PRICE,
                 "Total price with shipping on OrderPage doesn't correspond price on ProductPage" +
-                        "\nPage price: " + orderPageTotalPriceDouble +
+                        "\nPage price: " + orderPageTotalDouble +
                         "\nShould be: " + TOTAL_PRICE
         );
-        double TOTAL_PRICE_SHIPPING = TOTAL_PRICE + orderPageShippingPrice;
+        double TOTAL_WITH_SHIPPING = TOTAL_PRICE + orderPageTotalShippingDouble;
 //----------
 
         App().Pages().OrderPages().SummaryOrderPage().clickProceed();
@@ -72,19 +71,24 @@ public class DressBuyingPositive extends AbstractBaseTest {
         App().Pages().OrderPages().ShippingOrderPage().clickProceed();
         App().Pages().OrderPages().PaymentOrderPage().clickPayByCheck();
 
-        double FINAL_CHECK_PRICE = TextConverter.getDoubleValuePriceFromTextWith$(
+        double checkPaymentTotalWithShipping = TextConverter.getDoubleValuePriceFromTextWith$(
                 App().Pages().OrderPages().CheckPaymentPage().getPriceSpanText()
         );
 
-        Assertions.assertTrue(FINAL_CHECK_PRICE == TOTAL_PRICE_SHIPPING, "Prices are different!");
+        Assertions.assertTrue(
+                checkPaymentTotalWithShipping == TOTAL_WITH_SHIPPING,
+                "Prices are different!" +
+                "\nShould be: " + TOTAL_WITH_SHIPPING +
+                        "\nBut found: " +  checkPaymentTotalWithShipping
+                );
 
         App().Pages().OrderPages().CheckPaymentPage().clickProceed();
 
-        double confirmationPagePrice = TextConverter.getDoubleValuePriceFromTextWith$(
+        double confirmationPageTotalWithShipping = TextConverter.getDoubleValuePriceFromTextWith$(
                 App().Pages().OrderPages().OrderConfirmedPage().getPriceSpanText()
         );
         Assertions.assertTrue(
-                confirmationPagePrice == TOTAL_PRICE_SHIPPING,
+                confirmationPageTotalWithShipping == TOTAL_WITH_SHIPPING,
                 "Check price doesn't correspond the real price"
         );
     }

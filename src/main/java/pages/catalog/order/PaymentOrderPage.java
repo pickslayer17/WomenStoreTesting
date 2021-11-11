@@ -6,7 +6,7 @@ import org.openqa.selenium.support.FindBy;
 
 
 public class PaymentOrderPage extends OrderPage {
-    @FindBy(xpath = "//a[@title='Pay by check.']")
+    @FindBy(xpath = "//div[@id='HOOK_PAYMENT']/div[2]/div/p/a")
     WebElement payByCheckLink;
 
     public PaymentOrderPage(WebDriver driver) {

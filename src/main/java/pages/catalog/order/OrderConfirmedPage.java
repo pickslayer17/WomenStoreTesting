@@ -6,9 +6,9 @@ import org.openqa.selenium.support.FindBy;
 
 
 public class OrderConfirmedPage extends OrderPage {
-    @FindBy(xpath = "//p[@class='alert alert-success']")
+    @FindBy(xpath = "//div[@id='center_column']/p[1]")
     WebElement successOrderP;
-    @FindBy(xpath = "//span[@class='price']")
+    @FindBy(xpath = "//div[@id='center_column']/div/span")
     WebElement priceSpan;
 
     public OrderConfirmedPage(WebDriver driver) {

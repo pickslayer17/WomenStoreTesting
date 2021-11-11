@@ -16,10 +16,10 @@ public class OrderConfirmedPage extends OrderPage {
     }
 
     public String getPriceSpanText() {
-        return priceSpan.getText();
+        return priceSpan.getText().trim();
     }
 
     public String getSuccessOrderPText() {
-        return successOrderP.getText();
+        return successOrderP.getText().trim();
     }
 }

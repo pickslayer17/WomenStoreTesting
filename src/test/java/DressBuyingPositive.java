@@ -3,6 +3,7 @@ import data.User;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import products.ProductOrder;
 
 
 @Order(3)
@@ -25,36 +26,42 @@ public class DressBuyingPositive extends AbstractBaseTest {
         App().Pages().MyAccountPage().clickDressesLink();
         App().Pages().DressesCatalogPage().clickEveningDressesImgLink();
         App().Pages().EveningDressesCatalogPage().clickPrintedDress();
-        String productPagePrice = App().Pages().ProductPage().getPriceDisplaySpanText();
+        int quantity = 3;
+        App().Pages().ProductPage().setQuantityInput(quantity);
+
+        ProductOrder initialOrder = new ProductOrder();
+        initialOrder.setUnitPrice(App().Pages().ProductPage().getPriceDisplaySpanText());
+        initialOrder.setQuantity(quantity);
+        initialOrder.calculateTotal();
+
         App().Pages().ProductPage().clickAddToCardButton();
         App().Pages().ProductPage().clickProceedToCheckOutButton();
 
-//-----assertion block
-        String orderPageUnitPrice = App().Pages().OrderPages().SummaryOrderPage().getProductPriceSpanText();
-        String orderPageQuantity = App().Pages().OrderPages().SummaryOrderPage().getQuantityInputText();
-        String orderPageTotal = App().Pages().OrderPages().SummaryOrderPage().getTotalSpanText();
-        String orderPageTotalShipping = App().Pages().OrderPages().SummaryOrderPage().getTotalShippingText();
+        ProductOrder orderPageOrder = new ProductOrder();
+        orderPageOrder.setUnitPrice(App().Pages().OrderPages().SummaryOrderPage().getProductPriceSpanText());
+        orderPageOrder.setQuantity(App().Pages().OrderPages().SummaryOrderPage().getQuantityInputText());
+        orderPageOrder.setTotal(App().Pages().OrderPages().SummaryOrderPage().getTotalSpanText());
+        orderPageOrder.setTotalShipping(App().Pages().OrderPages().SummaryOrderPage().getTotalShippingText());
+        orderPageOrder.setTotalWithShipping(App().Pages().OrderPages().SummaryOrderPage().getTotalWithShippingText());
+        initialOrder.setTotalShipping(orderPageOrder.getTotalShipping());
+        initialOrder.calculateTotalWithShipping();
+
         Assertions.assertEquals(
-                productPagePrice, orderPageUnitPrice,
-                "Price on the OrderPage doesn't corresponds price on the ProductPage"
+                initialOrder.getUnitPrice(), orderPageOrder.getUnitPrice(),
+                "Price on the OrderPage isn't correct"
         );
-        double orderPagePriceDouble = TextConverter.getDoubleValuePriceFromTextWith$(orderPageUnitPrice);
-        int orderPageQuantityInt = Integer.parseInt(orderPageQuantity.trim());
-        double orderPageTotalDouble = TextConverter.getDoubleValuePriceFromTextWith$(orderPageTotal);
-        double orderPageTotalShippingDouble = TextConverter.getDoubleValuePriceFromTextWith$(orderPageTotalShipping);
-        Assertions.assertTrue(
-                orderPageTotalDouble == orderPagePriceDouble * orderPageQuantityInt,
-                "Total price on OrderPage doesn't correspond price on ProductPage"
+        Assertions.assertEquals(
+                initialOrder.getQuantity(), orderPageOrder.getQuantity(),
+                "Quantity on OrderPage isn't correct"
         );
-        double TOTAL_PRICE = orderPagePriceDouble * orderPageQuantityInt;
-        Assertions.assertTrue(
-                orderPageTotalDouble == TOTAL_PRICE,
-                "Total price with shipping on OrderPage doesn't correspond price on ProductPage" +
-                        "\nPage price: " + orderPageTotalDouble +
-                        "\nShould be: " + TOTAL_PRICE
+        Assertions.assertEquals(
+                initialOrder.getTotal(), orderPageOrder.getTotal(),
+                "Total price on OrderPage isn't correct"
         );
-        double TOTAL_WITH_SHIPPING = TOTAL_PRICE + orderPageTotalShippingDouble;
-//----------
+        Assertions.assertEquals(
+                initialOrder.getTotalWithShipping(), orderPageOrder.getTotalWithShipping(),
+                "Total price With shipping on OrderPage isn't correct"
+        );
 
         App().Pages().OrderPages().SummaryOrderPage().clickProceed();
         App().Pages().OrderPages().AddressOrderPage().clickProceed();
@@ -63,7 +70,7 @@ public class DressBuyingPositive extends AbstractBaseTest {
         Assertions.assertTrue(
                 App().Pages().OrderPages().ShippingOrderPage().
                         isYouMustAgreePopupDivDisplayed(),
-                "Prices are different!"
+                "Popup \"You didn't agree with terms\" wasn't displayed"
         );
 
         App().Pages().OrderPages().ShippingOrderPage().clickYouMustAgreePopupDivCloseButton();
@@ -75,21 +82,20 @@ public class DressBuyingPositive extends AbstractBaseTest {
                 App().Pages().OrderPages().CheckPaymentPage().getPriceSpanText()
         );
 
-        Assertions.assertTrue(
-                checkPaymentTotalWithShipping == TOTAL_WITH_SHIPPING,
-                "Prices are different!" +
-                "\nShould be: " + TOTAL_WITH_SHIPPING +
-                        "\nBut found: " +  checkPaymentTotalWithShipping
-                );
+        Assertions.assertEquals(
+                checkPaymentTotalWithShipping, initialOrder.getTotalWithShipping(),
+                "Total price With shipping on CheckPayment Page isn't correct"
+
+        );
 
         App().Pages().OrderPages().CheckPaymentPage().clickProceed();
 
         double confirmationPageTotalWithShipping = TextConverter.getDoubleValuePriceFromTextWith$(
                 App().Pages().OrderPages().OrderConfirmedPage().getPriceSpanText()
         );
-        Assertions.assertTrue(
-                confirmationPageTotalWithShipping == TOTAL_WITH_SHIPPING,
-                "Check price doesn't correspond the real price"
+        Assertions.assertEquals(
+                confirmationPageTotalWithShipping, initialOrder.getTotalWithShipping(),
+                "Total price With shipping on Confirmation Page isn't correct"
         );
     }
 }

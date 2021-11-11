@@ -13,6 +13,8 @@ public class ProductPage extends AbstractPage {
     WebElement proceedToCheckOutButton;
     @FindBy(xpath = "//span[@id='our_price_display']")
     WebElement priceDisplaySpan;
+    @FindBy(xpath = "//input[@id='quantity_wanted']")
+    WebElement quantityInput;
 
     public ProductPage(WebDriver driver) {
         super(driver);
@@ -28,6 +30,12 @@ public class ProductPage extends AbstractPage {
     }
 
     public String getPriceDisplaySpanText() {
-        return priceDisplaySpan.getText();
+        return priceDisplaySpan.getText().trim();
+    }
+
+
+    public void setQuantityInput(int count) {
+        quantityInput.clear();
+        quantityInput.sendKeys(String.valueOf(count));
     }
 }

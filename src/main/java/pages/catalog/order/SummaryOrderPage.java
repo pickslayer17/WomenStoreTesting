@@ -16,13 +16,15 @@ public class SummaryOrderPage extends OrderPage {
     WebElement totalSpan;
     @FindBy(xpath = "//div[@id='order-detail-content']/table//tfoot/tr[3]/td[2]")
     WebElement totalShippingTd;
+    @FindBy(xpath = "//div[@id='order-detail-content']/table//tfoot/tr[7]/td[2]/span")
+    WebElement totalWithShipping;
 
     public SummaryOrderPage(WebDriver driver) {
         super(driver);
     }
 
     public String getProductPriceSpanText() {
-        return productPriceSpan.getText();
+        return productPriceSpan.getText().trim();
     }
 
     public String getQuantityInputText() {
@@ -30,11 +32,15 @@ public class SummaryOrderPage extends OrderPage {
     }
 
     public String getTotalSpanText() {
-        return totalSpan.getText();
+        return totalSpan.getText().trim();
     }
 
     public String getTotalShippingText() {
-        return totalShippingTd.getText();
+        return totalShippingTd.getText().trim();
+    }
+
+    public String getTotalWithShippingText() {
+        return totalWithShipping.getText().trim();
     }
 }
 

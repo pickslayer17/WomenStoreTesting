@@ -21,6 +21,6 @@ public class CheckPaymentPage extends OrderPage {
     }
 
     public String getPriceSpanText() {
-        return priceSpan.getText();
+        return priceSpan.getText().trim();
     }
 }

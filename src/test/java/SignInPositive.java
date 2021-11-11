@@ -2,11 +2,10 @@ import data.User;
 
 import org.junit.jupiter.api.*;
 
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+@Order(2)
 public class SignInPositive extends AbstractBaseTest{
 
 
-    @Order(2)
     @Test
     public void signInPositive(){
         App().Flow().navigateToUrl("http://automationpractice.com/");

@@ -2,11 +2,10 @@ import data.User;
 
 import org.junit.jupiter.api.*;
 
-
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+@Order(1)
 public class RegisterPositive extends AbstractBaseTest {
 
-    @Order(1)
+
     @Test
     public void registerUser() throws InterruptedException {
         App().Flow().navigateToUrl("http://automationpractice.com/");

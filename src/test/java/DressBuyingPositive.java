@@ -2,11 +2,10 @@ import Utils.TextConverter;
 import data.User;
 import org.junit.jupiter.api.*;
 
-
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+@Order(3)
 public class DressBuyingPositive extends AbstractBaseTest {
 
-    @Order(3)
+
     @Test
     public void buyADress() {
         App().Flow().navigateToUrl("http://automationpractice.com/");

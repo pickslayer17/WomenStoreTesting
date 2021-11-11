@@ -1,6 +1,4 @@
 import lib.AppLib;
-
-
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
@@ -18,11 +16,8 @@ public abstract class AbstractBaseTest {
         System.setProperty("webdriver.chrome.driver", "C:/chromedriver.exe");
         driver = new ChromeDriver();
 
-
-
         app = new AppLib(driver);
     }
-
 
 
     @AfterEach

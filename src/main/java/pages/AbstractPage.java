@@ -6,6 +6,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+
 public class AbstractPage {
 
     protected WebDriver driver;
@@ -16,7 +17,7 @@ public class AbstractPage {
     }
 
 
-    protected void waitUntilElement_IsClickable(WebElement element, int timeSec){
+    protected void waitUntilElement_IsClickable(WebElement element, int timeSec) {
         WebDriverWait wait = new WebDriverWait(driver, timeSec);
         wait.until(ExpectedConditions.elementToBeClickable(element));
     }
@@ -26,8 +27,8 @@ public class AbstractPage {
         wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 
-    public void waitUntilUrlToBe(String expectedUrl, int timeSec){
-        WebDriverWait wait = new WebDriverWait(driver,timeSec);
+    public void waitUntilUrlToBe(String expectedUrl, int timeSec) {
+        WebDriverWait wait = new WebDriverWait(driver, timeSec);
         wait.until(ExpectedConditions.urlToBe(expectedUrl));
     }
 }

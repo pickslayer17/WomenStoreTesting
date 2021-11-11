@@ -5,10 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class CreateAnAccountPage extends AbstractPage{
-    public CreateAnAccountPage(WebDriver driver) {
-        super(driver);
-    }
+
+public class CreateAnAccountPage extends AbstractPage {
     @FindBy(id = "id_gender1")
     WebElement maleRadioButton;
     @FindBy(id = "id_gender1")
@@ -17,27 +15,14 @@ public class CreateAnAccountPage extends AbstractPage{
     WebElement fCustomerNameInput;
     @FindBy(id = "customer_lastname")
     WebElement lCustomerNameInput;
-    @FindBy(id = "@@@")
-    WebElement eMailInput;
     @FindBy(id = "passwd")
     WebElement passInput;
-
     @FindBy(id = "days")
     WebElement daysSelect;
     @FindBy(id = "months")
     WebElement monthsSelect;
     @FindBy(id = "years")
     WebElement yearsSelect;
-
-    @FindBy(id = "@@@")
-    WebElement newsLettersCheckbox;
-    @FindBy(id = "@@@")
-    WebElement specialOffersCheckbox;
-
-    @FindBy(id = "@@@")
-    WebElement fNameInput;
-    @FindBy(id = "@@@")
-    WebElement lNameInput;
     @FindBy(id = "company")
     WebElement companyInput;
     @FindBy(id = "address1")
@@ -58,17 +43,17 @@ public class CreateAnAccountPage extends AbstractPage{
     WebElement mobilePhoneInput;
     @FindBy(id = "alias")
     WebElement addressAliasInput;
-
     @FindBy(id = "submitAccount")
     WebElement registerButton;
 
-
-
+    public CreateAnAccountPage(WebDriver driver) {
+        super(driver);
+    }
 
     public void fillGender(String gender) {
-        if(gender.equalsIgnoreCase("male")){
+        if (gender.equalsIgnoreCase("male")) {
             maleRadioButton.click();
-        } else if(gender.equalsIgnoreCase("female")){
+        } else if (gender.equalsIgnoreCase("female")) {
             femaleRadioButton.click();
         }
     }
@@ -78,7 +63,7 @@ public class CreateAnAccountPage extends AbstractPage{
     }
 
     public void fillCustomerLastName(String last_name) {
-    lCustomerNameInput.sendKeys(last_name);
+        lCustomerNameInput.sendKeys(last_name);
     }
 
     public void fillPassword(String password) {
@@ -91,7 +76,6 @@ public class CreateAnAccountPage extends AbstractPage{
         SelectUtil.fillSelect(daysSelect, dob[0]);
         SelectUtil.fillSelectByIndex(monthsSelect, dob[1]);
         SelectUtil.fillSelect(yearsSelect, dob[2]);
-
     }
 
 
@@ -124,6 +108,6 @@ public class CreateAnAccountPage extends AbstractPage{
     }
 
     public void waitUntilGenderMaleRadioIsDisplayed() {
-        waitUntilElement_IsDisplayed(maleRadioButton,5);
+        waitUntilElement_IsDisplayed(maleRadioButton, 5);
     }
 }

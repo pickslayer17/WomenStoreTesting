@@ -3,9 +3,10 @@ package Utils;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
+
 public class SelectUtil {
 
-    public static void fillSelect(WebElement select, String selectValue){
+    public static void fillSelect(WebElement select, String selectValue) {
         Select sel = new Select(select);
         sel.selectByValue(selectValue);
     }
@@ -19,6 +20,4 @@ public class SelectUtil {
         Select sel = new Select(select);
         sel.selectByVisibleText(selectValue);
     }
-
-
 }

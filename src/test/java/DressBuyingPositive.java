@@ -1,6 +1,9 @@
 import Utils.TextConverter;
 import data.User;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.Test;
+
 
 @Order(3)
 public class DressBuyingPositive extends AbstractBaseTest {
@@ -13,8 +16,8 @@ public class DressBuyingPositive extends AbstractBaseTest {
 
         User user = DataProvider.getUser();
 
-        App().Pages().AuthenticationPage().fillEmailAddress(user.getUserData("E-mail"));
-        App().Pages().AuthenticationPage().fillPassword(user.getUserData("Password"));
+        App().Pages().AuthenticationPage().fillEmailAddress(user.getEmail());
+        App().Pages().AuthenticationPage().fillPassword(user.getPassword());
         App().Pages().AuthenticationPage().clickSignInButton();
 
         Assertions.assertEquals(App().Pages().MyAccountPage().getPAGE_URL(), App().Flow().getCurrentUrl());
@@ -50,7 +53,7 @@ public class DressBuyingPositive extends AbstractBaseTest {
                 "Total price with shipping on OrderPage doesn't correspond price on ProductPage" +
                         "\nPage price: " + orderPageTotalPriceDouble +
                         "\nShould be: " + TOTAL_PRICE
-                );
+        );
         double TOTAL_PRICE_SHIPPING = TOTAL_PRICE + orderPageShippingPrice;
 //----------
 
@@ -60,9 +63,9 @@ public class DressBuyingPositive extends AbstractBaseTest {
 
         Assertions.assertTrue(
                 App().Pages().OrderPages().ShippingOrderPage().
-                isYouMustAgreePopupDivDisplayed(),
+                        isYouMustAgreePopupDivDisplayed(),
                 "Prices are different!"
-                );
+        );
 
         App().Pages().OrderPages().ShippingOrderPage().clickYouMustAgreePopupDivCloseButton();
         App().Pages().OrderPages().ShippingOrderPage().clickAgreeTermsCheckbox();
@@ -84,7 +87,5 @@ public class DressBuyingPositive extends AbstractBaseTest {
                 confirmationPagePrice == TOTAL_PRICE_SHIPPING,
                 "Check price doesn't correspond the real price"
         );
-
     }
-
 }

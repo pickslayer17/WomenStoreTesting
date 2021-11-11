@@ -1,23 +1,34 @@
 package data;
 
 import lib.ReadExcelLib;
+import org.apache.commons.lang3.ArrayUtils;
 
-import java.util.HashMap;
 import java.util.Map;
+
 
 public class UserParser {
 
-    public User getUserData(){
+    public User getUserData() {
         User user = new User();
         ReadExcelLib readExcelLib = new ReadExcelLib();
-        Object[][] obj = readExcelLib.GetExcelData(
+        Object[][] excelArr = readExcelLib.GetExcelData(
                 ReadExcelLib.class.getClassLoader().getResource("ExcelExample.xlsx").getFile(),
                 "Sheet1",
                 2);
+        Map<Object, Object> userData = ArrayUtils.toMap(excelArr);
 
-        for (int i = 0; i < obj.length; i++) {
-            user.putValue((String) obj[i][0], (String) obj[i][1]);
-        }
+        user.setEmail((String) userData.get("E-mail"));
+        user.setGender((String) userData.get("Gender"));
+        user.setFirstName((String) userData.get("First Name"));
+        user.setLastName((String) userData.get("Last Name"));
+        user.setPassword((String) userData.get("Password"));
+        user.setDateOfBirth((String) userData.get("Date of Birth"));
+        user.setCompany((String) userData.get("Company"));
+        user.setAddress((String) userData.get("Address"));
+        user.setCity((String) userData.get("City"));
+        user.setState((String) userData.get("State"));
+        user.setZip((String) userData.get("Zip"));
+        user.setHomePhone((String) userData.get("Home Phone"));
 
         return user;
     }

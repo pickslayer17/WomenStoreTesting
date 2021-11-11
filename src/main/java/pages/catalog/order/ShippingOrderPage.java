@@ -4,11 +4,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class ShippingOrderPage extends OrderPage {
-    public ShippingOrderPage(WebDriver driver) {
-        super(driver);
-    }
 
+public class ShippingOrderPage extends OrderPage {
     @FindBy(xpath = "//input[@id='cgv']")
     WebElement agreeTermsCheckbox;
     @FindBy(xpath = "//div[@class='fancybox-skin']")
@@ -16,17 +13,20 @@ public class ShippingOrderPage extends OrderPage {
     @FindBy(xpath = "//a[@title='Close']")
     WebElement youMustAgreePopupDivCloseButton;
 
+    public ShippingOrderPage(WebDriver driver) {
+        super(driver);
+    }
+
     public boolean isYouMustAgreePopupDivDisplayed() {
         return youMustAgreePopupDiv.isDisplayed();
     }
 
-    public void clickYouMustAgreePopupDivCloseButton(){
+    public void clickYouMustAgreePopupDivCloseButton() {
         waitUntilElement_IsClickable(youMustAgreePopupDivCloseButton, 2);
         youMustAgreePopupDivCloseButton.click();
     }
 
-    public void clickAgreeTermsCheckbox(){
+    public void clickAgreeTermsCheckbox() {
         agreeTermsCheckbox.click();
     }
-
 }

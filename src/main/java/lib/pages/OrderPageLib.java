@@ -3,6 +3,7 @@ package lib.pages;
 import org.openqa.selenium.WebDriver;
 import pages.catalog.order.*;
 
+
 public class OrderPageLib {
     private WebDriver driver;
 
@@ -26,15 +27,29 @@ public class OrderPageLib {
         paymentOrderPage = new PaymentOrderPage(driver);
         checkPaymentPage = new CheckPaymentPage(driver);
         orderConfirmedPage = new OrderConfirmedPage(driver);
-
     }
 
-    public SummaryOrderPage SummaryOrderPage(){return summaryOrderPage;}
-    public AddressOrderPage AddressOrderPage() { return addressOrderPage;}
-    public ShippingOrderPage ShippingOrderPage() {return shippingOrderPage;}
-    public PaymentOrderPage PaymentOrderPage() {return paymentOrderPage;}
-    public CheckPaymentPage CheckPaymentPage() {return checkPaymentPage;}
-    public OrderConfirmedPage OrderConfirmedPage() {return orderConfirmedPage;}
+    public SummaryOrderPage SummaryOrderPage() {
+        return summaryOrderPage;
+    }
 
+    public AddressOrderPage AddressOrderPage() {
+        return addressOrderPage;
+    }
 
+    public ShippingOrderPage ShippingOrderPage() {
+        return shippingOrderPage;
+    }
+
+    public PaymentOrderPage PaymentOrderPage() {
+        return paymentOrderPage;
+    }
+
+    public CheckPaymentPage CheckPaymentPage() {
+        return checkPaymentPage;
+    }
+
+    public OrderConfirmedPage OrderConfirmedPage() {
+        return orderConfirmedPage;
+    }
 }

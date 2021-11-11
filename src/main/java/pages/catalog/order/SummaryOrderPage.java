@@ -6,10 +6,6 @@ import org.openqa.selenium.support.FindBy;
 
 
 public class SummaryOrderPage extends OrderPage {
-    public SummaryOrderPage(WebDriver driver) {
-        super(driver);
-    }
-
     @FindBy(id = "cart_summary")
     WebElement orderTable;
     @FindBy(xpath = "//td/span[starts-with(@id ,'product_price')]")
@@ -21,16 +17,19 @@ public class SummaryOrderPage extends OrderPage {
     @FindBy(xpath = "//td[starts-with(@id ,'total_shipping')]")
     WebElement totalShippingTd;
 
+    public SummaryOrderPage(WebDriver driver) {
+        super(driver);
+    }
 
-    public String getProductPrice_tdText(){
+    public String getProductPrice_tdText() {
         return productPriceSpan.getText();
     }
 
-    public String getQuantity_tdText(){
+    public String getQuantity_tdText() {
         return quantitySpan.getAttribute("value");
     }
 
-    public String getTotalProductPrice_tdText(){
+    public String getTotalProductPrice_tdText() {
         return totalProductPriceSpan.getText();
     }
 

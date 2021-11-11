@@ -1,10 +1,14 @@
 package lib.pages;
 
 import org.openqa.selenium.WebDriver;
-import pages.*;
+import pages.AuthenticationPage;
+import pages.CreateAnAccountPage;
+import pages.HomePage;
+import pages.MyAccountPage;
 import pages.catalog.DressesCatalogPage;
 import pages.catalog.EveningDressesCatalogPage;
 import pages.catalog.ProductPage;
+
 
 public class PageLib {
     private WebDriver driver;
@@ -36,25 +40,39 @@ public class PageLib {
         productPage = new ProductPage(driver);
     }
 
-    public void initializePageLibs(){
+    public void initializePageLibs() {
         orderPages = new OrderPageLib(driver);
     }
 
     public HomePage HomePage() {
         return homePage;
     }
+
     public AuthenticationPage AuthenticationPage() {
         return authenticationPage;
     }
+
     public CreateAnAccountPage CreateAnAccountPage() {
         return createAnAccountPage;
     }
-    public MyAccountPage MyAccountPage() { return myAccountPage;}
-    public DressesCatalogPage DressesCatalogPage() {return dressesCatalogPage;}
-    public EveningDressesCatalogPage EveningDressesCatalogPage() {return eveningDressesCatalogPage;}
-    public ProductPage ProductPage() {return productPage;}
 
-    public OrderPageLib OrderPages(){
+    public MyAccountPage MyAccountPage() {
+        return myAccountPage;
+    }
+
+    public DressesCatalogPage DressesCatalogPage() {
+        return dressesCatalogPage;
+    }
+
+    public EveningDressesCatalogPage EveningDressesCatalogPage() {
+        return eveningDressesCatalogPage;
+    }
+
+    public ProductPage ProductPage() {
+        return productPage;
+    }
+
+    public OrderPageLib OrderPages() {
         return orderPages;
     }
 }

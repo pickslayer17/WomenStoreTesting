@@ -1,19 +1,18 @@
 import lib.AppLib;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
+
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.concurrent.TimeUnit;
 
 public abstract class AbstractBaseTest {
 
     private WebDriver driver;
     private AppLib app;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         System.out.println("start test method");
         System.setProperty("webdriver.chrome.driver", "C:/chromedriver.exe");
@@ -26,7 +25,7 @@ public abstract class AbstractBaseTest {
 
 
 
-    @After
+    @AfterEach
     public void tearDown() throws InterruptedException {
         driver.close();
     }

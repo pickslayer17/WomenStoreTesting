@@ -1,12 +1,13 @@
 import data.User;
-import org.junit.Assert;
-import org.junit.Test;
 
+import org.junit.jupiter.api.*;
 
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class SignInPositive extends AbstractBaseTest{
 
-    @Test
 
+    @Order(2)
+    @Test
     public void signInPositive(){
         App().Flow().navigateToUrl("http://automationpractice.com/");
         App().Pages().HomePage().clickSignInButton();
@@ -17,6 +18,6 @@ public class SignInPositive extends AbstractBaseTest{
         App().Pages().AuthenticationPage().fillPassword(user.getUserData("Password"));
         App().Pages().AuthenticationPage().clickSignInButton();
 
-        Assert.assertEquals(App().Pages().MyAccountPage().getPAGE_URL(), App().Flow().getCurrentUrl());
+        Assertions.assertEquals(App().Pages().MyAccountPage().getPAGE_URL(), App().Flow().getCurrentUrl());
     }
 }

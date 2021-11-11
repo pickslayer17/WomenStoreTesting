@@ -1,14 +1,13 @@
 import data.User;
-import org.junit.Assert;
-import org.junit.Test;
+
+import org.junit.jupiter.api.*;
 
 
-
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class RegisterPositive extends AbstractBaseTest {
 
-
+    @Order(1)
     @Test
-
     public void registerUser() throws InterruptedException {
         App().Flow().navigateToUrl("http://automationpractice.com/");
         App().Pages().HomePage().clickSignInButton();
@@ -33,8 +32,10 @@ public class RegisterPositive extends AbstractBaseTest {
 
         App().Pages().CreateAnAccountPage().register();
 
-        Assert.assertEquals("Url of MyAccount Page doesn't corresponds",App().Pages().MyAccountPage().getPAGE_URL(), App().Flow().getCurrentUrl());
-
+        Assertions.assertEquals("Url of MyAccount Page doesn't corresponds",
+                App().Pages().MyAccountPage().getPAGE_URL(),
+                App().Flow().getCurrentUrl()
+        );
 
     }
 

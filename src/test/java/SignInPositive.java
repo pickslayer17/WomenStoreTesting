@@ -2,9 +2,11 @@ import data.User;
 import org.junit.Assert;
 import org.junit.Test;
 
+
 public class SignInPositive extends AbstractBaseTest{
 
     @Test
+
     public void signInPositive(){
         App().Flow().navigateToUrl("http://automationpractice.com/");
         App().Pages().HomePage().clickSignInButton();

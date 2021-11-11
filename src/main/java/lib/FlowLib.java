@@ -18,13 +18,11 @@ public class FlowLib {
         driver.get(url);
     }
 
-    public void waitUntilElementIsDisplayed(WebElement element, int timeSec) {
-        WebDriverWait wait = new WebDriverWait(driver, timeSec);
-        wait.until(ExpectedConditions.visibilityOf(element));
-    }
-
     public String getCurrentUrl() {
         return driver.getCurrentUrl();
     }
 
+    public void setWindowMaximized(){
+        driver.manage().window().maximize();
+    }
 }

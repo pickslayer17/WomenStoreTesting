@@ -1,13 +1,9 @@
 package pages;
 
-import lib.Util;
+import Utils.SelectUtil;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.Wait;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class CreateAnAccountPage extends AbstractPage{
     public CreateAnAccountPage(WebDriver driver) {
@@ -92,9 +88,9 @@ public class CreateAnAccountPage extends AbstractPage{
     public void fillDateOfBirth(String date_of_birth) {
         String[] dob = date_of_birth.split("-");
 
-        Util.fillSelect(daysSelect, dob[0]);
-        Util.fillSelectByIndex(monthsSelect, dob[1]);
-        Util.fillSelect(yearsSelect, dob[2]);
+        SelectUtil.fillSelect(daysSelect, dob[0]);
+        SelectUtil.fillSelectByIndex(monthsSelect, dob[1]);
+        SelectUtil.fillSelect(yearsSelect, dob[2]);
 
     }
 
@@ -112,7 +108,7 @@ public class CreateAnAccountPage extends AbstractPage{
     }
 
     public void fillState(String state) {
-        Util.fillSelectVisibleText(stateSelect, state);
+        SelectUtil.fillSelectVisibleText(stateSelect, state);
     }
 
     public void fillZip(String zip) {
@@ -128,7 +124,6 @@ public class CreateAnAccountPage extends AbstractPage{
     }
 
     public void waitUntilGenderMaleRadioIsDisplayed() {
-        WebDriverWait wait = new WebDriverWait(driver, 5);
-        wait.until(ExpectedConditions.elementToBeClickable(maleRadioButton));
+        waitUntilElement_IsDisplayed(maleRadioButton,5);
     }
 }

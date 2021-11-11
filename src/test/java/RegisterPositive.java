@@ -3,10 +3,12 @@ import org.junit.Assert;
 import org.junit.Test;
 
 
+
 public class RegisterPositive extends AbstractBaseTest {
 
 
     @Test
+
     public void registerUser() throws InterruptedException {
         App().Flow().navigateToUrl("http://automationpractice.com/");
         App().Pages().HomePage().clickSignInButton();
@@ -31,7 +33,7 @@ public class RegisterPositive extends AbstractBaseTest {
 
         App().Pages().CreateAnAccountPage().register();
 
-        Assert.assertEquals(App().Pages().MyAccountPage().getPAGE_URL(), App().Flow().getCurrentUrl());
+        Assert.assertEquals("Url of MyAccount Page doesn't corresponds",App().Pages().MyAccountPage().getPAGE_URL(), App().Flow().getCurrentUrl());
 
 
     }

@@ -1,5 +1,6 @@
 package lib;
 
+import lib.pages.PageLib;
 import org.openqa.selenium.WebDriver;
 
 public class AppLib {

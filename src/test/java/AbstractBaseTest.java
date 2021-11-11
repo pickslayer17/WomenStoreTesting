@@ -1,4 +1,5 @@
 import lib.AppLib;
+import lib.ReadExcelLib;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
@@ -13,7 +14,7 @@ public abstract class AbstractBaseTest {
     @BeforeEach
     public void setUp() {
         System.out.println("start test method");
-        System.setProperty("webdriver.chrome.driver", "C:/chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", AbstractBaseTest.class.getClassLoader().getResource("chromedriver.exe").getFile());
         driver = new ChromeDriver();
 
         app = new AppLib(driver);

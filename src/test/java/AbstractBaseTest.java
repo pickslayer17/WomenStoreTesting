@@ -1,9 +1,10 @@
+import io.github.bonigarcia.wdm.WebDriverManager;
 import lib.AppLib;
-import lib.ReadExcelLib;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 
 public abstract class AbstractBaseTest {
@@ -13,13 +14,18 @@ public abstract class AbstractBaseTest {
 
     @BeforeEach
     public void setUp() {
-        System.out.println("start test method");
-        System.setProperty("webdriver.chrome.driver", AbstractBaseTest.class.getClassLoader().getResource("chromedriver.exe").getFile());
-        driver = new ChromeDriver();
+        WebDriverManager.chromedriver().browserVersion("96.0.4664.35").setup();
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("enable-automation");
+        options.addArguments("--no-sandbox");
+        options.addArguments("--disable-infobars");
+        options.addArguments("--disable-dev-shm-usage");
+        options.addArguments("--disable-browser-side-navigation");
+        options.addArguments("--disable-gpu");
+        driver = new ChromeDriver(options);
 
         app = new AppLib(driver);
     }
-
 
     @AfterEach
     public void tearDown() throws InterruptedException {

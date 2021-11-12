@@ -14,6 +14,7 @@ public class HomePage extends AbstractPage {
     }
 
     public void clickSignInButton() {
+        waitUntilElement_IsClickable(signInButton, 10);
         signInButton.click();
     }
 }

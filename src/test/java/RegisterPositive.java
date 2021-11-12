@@ -3,6 +3,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDateTime;
+
 
 @Order(1)
 public class RegisterPositive extends AbstractBaseTest {
@@ -15,7 +17,7 @@ public class RegisterPositive extends AbstractBaseTest {
 
         User user = DataProvider.getUser();
 
-        App().Pages().AuthenticationPage().fillEmailCreateAddress(user.getEmail());
+        App().Pages().AuthenticationPage().fillEmailCreateAddress(getNewEmail(user.getEmail()));
         App().Pages().AuthenticationPage().clickCreateAnAccountButton();
 
         App().Pages().CreateAnAccountPage().waitUntilGenderMaleRadioIsDisplayed();
@@ -39,5 +41,16 @@ public class RegisterPositive extends AbstractBaseTest {
                 App().Flow().getCurrentUrl(),
                 "Url of MyAccount Page doesn't corresponds"
         );
+    }
+
+    private String getNewEmail(String template) {
+        String part1 = template.split("@")[0];
+        String part2 = template.split("@")[1];
+        String uniqueInt = String.valueOf(
+                LocalDateTime.now().getDayOfMonth()) +
+                String.valueOf(LocalDateTime.now().getHour()) +
+                String.valueOf(LocalDateTime.now().getMinute()
+                );
+        return part1 + uniqueInt + "@" + part2;
     }
 }

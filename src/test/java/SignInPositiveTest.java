@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 
 @Order(2)
-public class SignInPositive extends AbstractBaseTest {
+public class SignInPositiveTest extends AbstractBaseTest {
 
 
     @Test

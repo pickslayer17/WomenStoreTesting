@@ -7,11 +7,11 @@ import java.time.LocalDateTime;
 
 
 @Order(1)
-public class RegisterPositive extends AbstractBaseTest {
+public class RegisterPositiveTest extends AbstractBaseTest {
 
 
     @Test
-    public void registerUser()  {
+    public void registerUser() {
         App().Flow().navigateToUrl("http://automationpractice.com/");
         App().Pages().HomePage().clickSignInButton();
 
@@ -51,6 +51,6 @@ public class RegisterPositive extends AbstractBaseTest {
                 );
         String result = template.replace("@", "_" + uniqueInt + "@");
         System.out.println("User email is: " + result);
-        return  result;
+        return result;
     }
 }

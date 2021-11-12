@@ -1,9 +1,9 @@
 import Utils.TextConverter;
+import data.ProductOrder;
 import data.User;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
-import products.ProductOrder;
 
 
 @Order(3)

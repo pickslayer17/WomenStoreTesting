@@ -1,4 +1,4 @@
-package products;
+package data;
 
 public class ProductOrder {
     double unitPrice;

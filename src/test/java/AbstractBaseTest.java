@@ -14,7 +14,7 @@ public abstract class AbstractBaseTest {
 
     @BeforeEach
     public void setUp() {
-        WebDriverManager.chromedriver().browserVersion("96.0.4664.35").setup();
+        WebDriverManager.chromedriver().browserVersion("95.0.4638").setup();
         ChromeOptions options = new ChromeOptions();
         options.addArguments("enable-automation");
         options.addArguments("--no-sandbox");
@@ -28,7 +28,7 @@ public abstract class AbstractBaseTest {
     }
 
     @AfterEach
-    public void tearDown() throws InterruptedException {
+    public void tearDown()  {
         driver.quit();
     }
 

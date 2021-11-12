@@ -11,7 +11,7 @@ public class RegisterPositive extends AbstractBaseTest {
 
 
     @Test
-    public void registerUser() throws InterruptedException {
+    public void registerUser()  {
         App().Flow().navigateToUrl("http://automationpractice.com/");
         App().Pages().HomePage().clickSignInButton();
 
@@ -44,13 +44,13 @@ public class RegisterPositive extends AbstractBaseTest {
     }
 
     private String getNewEmail(String template) {
-        String part1 = template.split("@")[0];
-        String part2 = template.split("@")[1];
         String uniqueInt = String.valueOf(
                 LocalDateTime.now().getDayOfMonth()) +
                 String.valueOf(LocalDateTime.now().getHour()) +
                 String.valueOf(LocalDateTime.now().getMinute()
                 );
-        return part1 + uniqueInt + "@" + part2;
+        String result = template.replace("@", "_" + uniqueInt + "@");
+        System.out.println("User email is: " + result);
+        return  result;
     }
 }

@@ -22,8 +22,8 @@ public abstract class AbstractBaseTest {
         options.addArguments("--disable-dev-shm-usage");
         options.addArguments("--disable-browser-side-navigation");
         options.addArguments("--disable-gpu");
-        driver = new ChromeDriver(options);
 
+        driver = new ChromeDriver(options);
         app = new AppLib(driver);
     }
 

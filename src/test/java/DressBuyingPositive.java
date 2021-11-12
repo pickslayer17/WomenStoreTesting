@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test;
 @Order(3)
 public class DressBuyingPositive extends AbstractBaseTest {
 
-
     @Test
     public void buyADress() {
         App().Flow().navigateToUrl("http://automationpractice.com/");

@@ -18,6 +18,7 @@
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>3.0.0-M5</version>
                     <configuration>
+                        <testSourceDirectory>src/test/java</testSourceDirectory>
                         <includes>
                             <include>**/RegisterPositive.java</include>
                             <include>**/SignInPositive.java</include>
@@ -34,14 +35,13 @@
                                 <goal>integration-test</goal>
                                 <goal>verify</goal>
                             </goals>
-                            <configuration>
-                            </configuration>
                         </execution>
                     </executions>
                 </plugin>
             </plugins>
         </pluginManagement>
     </build>
+
     <dependencies>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>

@@ -29,7 +29,7 @@ public abstract class AbstractBaseTest {
 
     @AfterEach
     public void tearDown() throws InterruptedException {
-        driver.close();
+        driver.quit();
     }
 
     public AppLib App() {

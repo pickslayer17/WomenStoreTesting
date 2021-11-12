@@ -21,7 +21,7 @@ public class ProductOrder {
     }
 
     public void setUnitPrice(String unitPrice) {
-        this.unitPrice = Utils.TextConverter.getDoubleValuePriceFromTextWith$(unitPrice);
+        this.unitPrice = Utils.TextConverter.parsePriceToDoubleFromTextWith$(unitPrice);
     }
 
     public int getQuantity() {
@@ -41,7 +41,7 @@ public class ProductOrder {
     }
 
     public void setTotal(String total) {
-        this.total = Utils.TextConverter.getDoubleValuePriceFromTextWith$(total);
+        this.total = Utils.TextConverter.parsePriceToDoubleFromTextWith$(total);
     }
 
     public double getTotalShipping() {
@@ -49,7 +49,7 @@ public class ProductOrder {
     }
 
     public void setTotalShipping(String totalShipping) {
-        this.totalShipping = Utils.TextConverter.getDoubleValuePriceFromTextWith$(totalShipping);
+        this.totalShipping = Utils.TextConverter.parsePriceToDoubleFromTextWith$(totalShipping);
     }
 
     public void setTotalShipping(double totalShipping) {
@@ -61,7 +61,7 @@ public class ProductOrder {
     }
 
     public void setTotalWithShipping(String totalWithShipping) {
-        this.totalWithShipping = Utils.TextConverter.getDoubleValuePriceFromTextWith$(totalWithShipping);
+        this.totalWithShipping = Utils.TextConverter.parsePriceToDoubleFromTextWith$(totalWithShipping);
     }
 
     public void setTotalWithShipping(double totalWithShipping) {

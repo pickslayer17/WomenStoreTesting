@@ -77,7 +77,7 @@ public class DressBuyingPositive extends AbstractBaseTest {
         App().Pages().OrderPages().ShippingOrderPage().clickProceed();
         App().Pages().OrderPages().PaymentOrderPage().clickPayByCheck();
 
-        double checkPaymentTotalWithShipping = TextConverter.getDoubleValuePriceFromTextWith$(
+        double checkPaymentTotalWithShipping = TextConverter.parsePriceToDoubleFromTextWith$(
                 App().Pages().OrderPages().CheckPaymentPage().getPriceSpanText()
         );
 
@@ -89,7 +89,7 @@ public class DressBuyingPositive extends AbstractBaseTest {
 
         App().Pages().OrderPages().CheckPaymentPage().clickProceed();
 
-        double confirmationPageTotalWithShipping = TextConverter.getDoubleValuePriceFromTextWith$(
+        double confirmationPageTotalWithShipping = TextConverter.parsePriceToDoubleFromTextWith$(
                 App().Pages().OrderPages().OrderConfirmedPage().getPriceSpanText()
         );
         Assertions.assertEquals(

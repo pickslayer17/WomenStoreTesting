@@ -31,4 +31,5 @@ public class AbstractPage {
         WebDriverWait wait = new WebDriverWait(driver, timeSec);
         wait.until(ExpectedConditions.urlToBe(expectedUrl));
     }
+
 }

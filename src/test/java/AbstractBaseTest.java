@@ -2,6 +2,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import lib.AppLib;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.extension.RegisterExtension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -9,6 +10,8 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 public abstract class AbstractBaseTest {
 
+    @RegisterExtension
+    ScreenshotWatcher watcher = new ScreenshotWatcher();
     private WebDriver driver;
     private AppLib app;
 
@@ -25,6 +28,8 @@ public abstract class AbstractBaseTest {
 
         driver = new ChromeDriver(options);
         app = new AppLib(driver);
+        watcher.setDriver(driver);
+        watcher.setPath("target/surefire-reports");
     }
 
     @AfterEach

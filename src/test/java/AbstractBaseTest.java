@@ -1,3 +1,4 @@
+import Extensions.ScreenshotExceptionHandler;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import lib.AppLib;
 import org.junit.jupiter.api.AfterEach;
@@ -11,13 +12,14 @@ import org.openqa.selenium.chrome.ChromeOptions;
 public abstract class AbstractBaseTest {
 
     @RegisterExtension
-    ScreenshotWatcher watcher = new ScreenshotWatcher();
+    ScreenshotExceptionHandler screenshotExceptionHandler = new ScreenshotExceptionHandler();
     private WebDriver driver;
     private AppLib app;
 
     @BeforeEach
     public void setUp() {
-        WebDriverManager.chromedriver().browserVersion("95").setup();
+        WebDriverManager.chromedriver().setup();
+
         ChromeOptions options = new ChromeOptions();
         options.addArguments("enable-automation");
         options.addArguments("--no-sandbox");
@@ -28,12 +30,14 @@ public abstract class AbstractBaseTest {
 
         driver = new ChromeDriver(options);
         app = new AppLib(driver);
-        watcher.setDriver(driver);
-        watcher.setPath("target/surefire-reports");
+
+        screenshotExceptionHandler.setDriver(driver);
+        screenshotExceptionHandler.setPath("target/surefire-reports");
     }
 
     @AfterEach
     public void tearDown() {
+        driver.close();
         driver.quit();
     }
 

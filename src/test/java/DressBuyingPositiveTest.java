@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 
-
 @Order(3)
 public class DressBuyingPositiveTest extends AbstractBaseTest {
 

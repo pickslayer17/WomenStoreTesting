@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
 
-
 @Order(1)
 public class RegisterPositiveTest extends AbstractBaseTest {
 

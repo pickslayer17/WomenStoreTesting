@@ -24,6 +24,7 @@ public class ScreenshotExceptionHandler implements TestExecutionExceptionHandler
         System.out.println("The MESSAGE IS:");
         System.out.println(throwable.getMessage());
         System.out.println("---------------");
+        throwable.printStackTrace();
         if (driver != null) {
             captureScreenshot(driver, extensionContext.getDisplayName());
         }

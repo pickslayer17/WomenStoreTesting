@@ -78,7 +78,6 @@ public class CreateAnAccountPage extends AbstractPage {
         SelectUtil.fillSelect(yearsSelect, dob[2]);
     }
 
-
     public void fillCompany(String company) {
         companyInput.sendKeys(company);
     }

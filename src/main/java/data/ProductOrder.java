@@ -7,7 +7,6 @@ public class ProductOrder {
     double totalShipping;
     double totalWithShipping;
 
-
     public void calculateTotal() {
         total = unitPrice * quantity;
     }

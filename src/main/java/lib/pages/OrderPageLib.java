@@ -19,7 +19,6 @@ public class OrderPageLib {
         initializePages();
     }
 
-
     private void initializePages() {
         summaryOrderPage = new SummaryOrderPage(driver);
         addressOrderPage = new AddressOrderPage(driver);

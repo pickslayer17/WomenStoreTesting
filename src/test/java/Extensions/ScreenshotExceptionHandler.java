@@ -14,6 +14,8 @@ import java.io.IOException;
 
 public class ScreenshotExceptionHandler implements TestExecutionExceptionHandler {
 
+    private WebDriver driver;
+    private String path;
 
     @Override
     public void handleTestExecutionException(ExtensionContext extensionContext, Throwable throwable) throws Throwable {
@@ -27,9 +29,6 @@ public class ScreenshotExceptionHandler implements TestExecutionExceptionHandler
         }
     }
 
-    private WebDriver driver;
-    private String path;
-
     public void setDriver(WebDriver driver) {
         this.driver = driver;
     }
@@ -37,7 +36,6 @@ public class ScreenshotExceptionHandler implements TestExecutionExceptionHandler
     public void setPath(String path) {
         this.path = path;
     }
-
 
     public void captureScreenshot(WebDriver driver, String fileName) {
 
@@ -50,5 +48,4 @@ public class ScreenshotExceptionHandler implements TestExecutionExceptionHandler
             System.out.println("screenshot failed:" + e.getMessage());
         }
     }
-
 }

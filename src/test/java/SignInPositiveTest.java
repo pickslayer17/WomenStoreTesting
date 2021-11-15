@@ -3,13 +3,12 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 
+
 @Order(2)
 public class SignInPositiveTest extends AbstractBaseTest {
 
-
     @Test
     public void signInPositive() {
-        System.out.println("And this is test method");
         App().Flow().navigateToUrl("http://automationpractice.com/");
         App().Pages().HomePage().clickSignInButton();
 

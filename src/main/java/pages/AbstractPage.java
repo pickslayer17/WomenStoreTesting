@@ -16,7 +16,6 @@ public class AbstractPage {
         PageFactory.initElements(driver, this);
     }
 
-
     protected void waitUntilElement_IsClickable(WebElement element, int timeSec) {
         WebDriverWait wait = new WebDriverWait(driver, timeSec);
         wait.until(ExpectedConditions.elementToBeClickable(element));
@@ -31,5 +30,4 @@ public class AbstractPage {
         WebDriverWait wait = new WebDriverWait(driver, timeSec);
         wait.until(ExpectedConditions.urlToBe(expectedUrl));
     }
-
 }

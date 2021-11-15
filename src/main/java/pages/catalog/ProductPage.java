@@ -33,7 +33,6 @@ public class ProductPage extends AbstractPage {
         return priceDisplaySpan.getText().trim();
     }
 
-
     public void setQuantityInput(int count) {
         quantityInput.clear();
         quantityInput.sendKeys(String.valueOf(count));

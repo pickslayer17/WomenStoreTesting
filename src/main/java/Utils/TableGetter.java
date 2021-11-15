@@ -8,7 +8,6 @@ import java.util.List;
 
 public class TableGetter {
 
-
     public static List<WebElement> get_tr(WebElement element) {
         return element.findElements(By.xpath("//tr"));
     }

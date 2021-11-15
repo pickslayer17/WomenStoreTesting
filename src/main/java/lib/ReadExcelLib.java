@@ -46,6 +46,7 @@ public class ReadExcelLib {
 
         try {
             FileInputStream excel = new FileInputStream(file);
+            file.delete();
             wBook = new XSSFWorkbook(excel);
             sheet = wBook.getSheet(sheetName);
             int start = sheet.getFirstRowNum();

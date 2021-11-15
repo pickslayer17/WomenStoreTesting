@@ -40,7 +40,7 @@ public class ScreenshotWatcher implements AfterTestExecutionCallback {
 
     @Override
     public void afterTestExecution(ExtensionContext extensionContext) throws Exception {
-        System.out.println("HI! Im AFTERTEST EXECUTION IN TESTWATCHER IMPLEMENTED CLASS");
+        System.out.println("HI! Im AFTERTEST EXECUTION IN AfterTestExecutionCallback IMPLEMENTED CLASS");
         Method testMethod = extensionContext.getRequiredTestMethod();
         Boolean testFailed = extensionContext.getExecutionException().isPresent();
         if (testFailed) {

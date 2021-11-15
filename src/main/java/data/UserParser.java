@@ -12,7 +12,7 @@ public class UserParser {
         User user = new User();
         ReadExcelLib readExcelLib = new ReadExcelLib();
         Object[][] excelArr = readExcelLib.GetExcelData(
-                ReadExcelLib.class.getClassLoader().getResource("ExcelExample.xlsx").getFile(),
+                "ExcelExample.xlsx",
                 "Sheet1",
                 2);
         Map<Object, Object> userData = ArrayUtils.toMap(excelArr);

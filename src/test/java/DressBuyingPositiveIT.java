@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 
 @Order(3)
-public class DressBuyingPositiveTest extends AbstractBaseTest {
+public class DressBuyingPositiveIT extends AbstractBaseTest {
 
     @Test
     public void buyADress() {

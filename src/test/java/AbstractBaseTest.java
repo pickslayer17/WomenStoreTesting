@@ -32,7 +32,7 @@ public abstract class AbstractBaseTest {
         app = new AppLib(driver);
 
         screenshotExceptionHandler.setDriver(driver);
-        screenshotExceptionHandler.setPath("target/surefire-reports");
+        screenshotExceptionHandler.setPath("target/failsafe-reports");
     }
 
     @AfterEach

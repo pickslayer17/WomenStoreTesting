@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 
 
 @Order(1)
-public class RegisterPositiveTest extends AbstractBaseTest {
+public class RegisterPositiveIT extends AbstractBaseTest {
 
     @Test
     public void registerUser() {

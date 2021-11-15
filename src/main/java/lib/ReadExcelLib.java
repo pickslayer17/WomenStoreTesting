@@ -1,13 +1,11 @@
 package lib;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 
 
 public class ReadExcelLib {
@@ -28,7 +26,18 @@ public class ReadExcelLib {
 
     public Object[][] GetExcelData(String fileName, String sheetName, int numberOfCols) {
 
-        File file = new File(fileName);
+        InputStream in = getClass().getClassLoader().getResourceAsStream(fileName);
+        File file = null;
+        try {
+            file = File.createTempFile(fileName, ".tmp");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            FileUtils.copyInputStreamToFile(in, file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         XSSFWorkbook wBook;
         XSSFSheet sheet;

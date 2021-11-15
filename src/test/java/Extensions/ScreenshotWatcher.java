@@ -1,7 +1,7 @@
 package Extensions;
 
+import org.junit.jupiter.api.extension.AfterTestExecutionCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
-import org.junit.jupiter.api.extension.TestExecutionExceptionHandler;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -10,25 +10,13 @@ import org.openqa.selenium.WebDriverException;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.lang.reflect.Method;
 
 
-public class ScreenshotExceptionHandler implements TestExecutionExceptionHandler {
+public class ScreenshotWatcher implements AfterTestExecutionCallback {
 
     private WebDriver driver;
     private String path;
-
-    @Override
-    public void handleTestExecutionException(ExtensionContext extensionContext, Throwable throwable) throws Throwable {
-        System.out.print("An extension appears in method: ");
-        System.out.println(extensionContext.getDisplayName());
-        System.out.println("The MESSAGE IS:");
-        System.out.println(throwable.getMessage());
-        System.out.println("---------------");
-        if (driver != null) {
-            captureScreenshot(driver, extensionContext.getDisplayName());
-        }
-        throw throwable;
-    }
 
     public void setDriver(WebDriver driver) {
         this.driver = driver;
@@ -48,5 +36,20 @@ public class ScreenshotExceptionHandler implements TestExecutionExceptionHandler
         } catch (IOException | WebDriverException e) {
             System.out.println("screenshot failed:" + e.getMessage());
         }
+    }
+
+    @Override
+    public void afterTestExecution(ExtensionContext extensionContext) throws Exception {
+        System.out.println("HI! Im AFTERTEST EXECUTION IN TESTWATCHER IMPLEMENTED CLASS");
+        Method testMethod = extensionContext.getRequiredTestMethod();
+        Boolean testFailed = extensionContext.getExecutionException().isPresent();
+        if (testFailed) {
+            captureScreenshot(driver, extensionContext.getDisplayName());
+            System.out.println("TEST FAILED ON " + testMethod.getName());
+        } else {
+            System.out.println("TEST PASSED ON " + testMethod.getName());
+        }
+
+
     }
 }

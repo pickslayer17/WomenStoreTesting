@@ -7,7 +7,7 @@ import pages.AbstractPage;
 
 
 public class DressesCatalogPage extends AbstractPage {
-    @FindBy(xpath = "//div[@id='subcategories']/ul/li[2]/div[1]/a")
+    @FindBy(xpath = "//div[@id='subcategories']/ul/li[2]/div[1]/a[img]")
     WebElement eveningDressesImgLink;
 
     public DressesCatalogPage(WebDriver driver) {

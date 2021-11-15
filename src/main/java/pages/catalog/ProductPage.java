@@ -7,7 +7,7 @@ import pages.AbstractPage;
 
 
 public class ProductPage extends AbstractPage {
-    @FindBy(xpath = "//p[@id='add_to_cart']/button")
+    @FindBy(xpath = "//p[@id='add_to_cart']/button[@name='Submit']")
     WebElement addToCartButton;
     @FindBy(xpath = "//div[@id='layer_cart']/div[1]/div[2]/div[4]/a")
     WebElement proceedToCheckOutButton;

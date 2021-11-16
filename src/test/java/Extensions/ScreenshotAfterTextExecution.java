@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.lang.reflect.Method;
 
 
-public class ScreenshotWatcher implements AfterTestExecutionCallback {
+public class ScreenshotAfterTextExecution implements AfterTestExecutionCallback {
 
     private WebDriver driver;
     private String path;
@@ -40,16 +40,14 @@ public class ScreenshotWatcher implements AfterTestExecutionCallback {
 
     @Override
     public void afterTestExecution(ExtensionContext extensionContext) throws Exception {
-        System.out.println("HI! Im AFTERTEST EXECUTION IN AfterTestExecutionCallback IMPLEMENTED CLASS");
         Method testMethod = extensionContext.getRequiredTestMethod();
         Boolean testFailed = extensionContext.getExecutionException().isPresent();
+        System.out.println(extensionContext.getExecutionException().getClass());
         if (testFailed) {
             captureScreenshot(driver, extensionContext.getDisplayName());
             System.out.println("TEST FAILED ON " + testMethod.getName());
         } else {
             System.out.println("TEST PASSED ON " + testMethod.getName());
         }
-
-
     }
 }

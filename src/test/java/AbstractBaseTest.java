@@ -1,4 +1,4 @@
-import Extensions.ScreenshotWatcher;
+import Extensions.ScreenshotAfterTextExecution;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import lib.AppLib;
 import org.junit.jupiter.api.AfterEach;
@@ -12,14 +12,12 @@ import org.openqa.selenium.chrome.ChromeOptions;
 public abstract class AbstractBaseTest {
 
     @RegisterExtension
-    ScreenshotWatcher screenshotWatcher = new ScreenshotWatcher();
+    ScreenshotAfterTextExecution screenshotAfterTextExecution = new ScreenshotAfterTextExecution();
     private WebDriver driver;
     private AppLib app;
 
     @BeforeEach
     public void setUp() {
-
-        System.out.println("Hi! Im TTTTEEEESSSSTTT itself!!!!");
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
         options.addArguments("enable-automation");
@@ -31,13 +29,12 @@ public abstract class AbstractBaseTest {
 
         driver = new ChromeDriver(options);
         app = new AppLib(driver);
-        screenshotWatcher.setDriver(driver);
-        screenshotWatcher.setPath("target/failsafe-reports");
+        screenshotAfterTextExecution.setDriver(driver);
+        screenshotAfterTextExecution.setPath("target/failsafe-reports");
     }
 
     @AfterEach
     public void tearDown() {
-        System.out.println("Hi! Im TEARDOWN_METHOD!!!!");
         driver.close();
         driver.quit();
     }

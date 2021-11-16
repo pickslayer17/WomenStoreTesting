@@ -41,7 +41,7 @@ public class ScreenshotAfterTextExecution implements AfterTestExecutionCallback 
     @Override
     public void afterTestExecution(ExtensionContext extensionContext)  {
         Method testMethod = extensionContext.getRequiredTestMethod();
-        Boolean testFailed = extensionContext.getExecutionException().isPresent();
+        boolean testFailed = extensionContext.getExecutionException().isPresent();
         if (testFailed) {
             System.out.println("TEST FAILED ON " + testMethod.getName());
             captureScreenshot(driver, extensionContext.getDisplayName());

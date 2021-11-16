@@ -1,5 +1,6 @@
 package pages;
 
+import data.Properties;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -14,6 +15,18 @@ public class AbstractPage {
     public AbstractPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
+    }
+
+    protected void waitUntilElement_IsClickable(WebElement element) {
+        waitUntilElement_IsClickable(element, Integer.parseInt(Properties.getInstance().getPropertyByKey("explicit_wait_timeout")));
+    }
+
+    protected void waitUntilElement_IsDisplayed(WebElement element) {
+        waitUntilElement_IsDisplayed(element, Integer.parseInt(Properties.getInstance().getPropertyByKey("explicit_wait_timeout")));
+    }
+
+    public void waitUntilUrlToBe(String expectedUrl) {
+        waitUntilUrlToBe(expectedUrl, Integer.parseInt(Properties.getInstance().getPropertyByKey("explicit_wait_timeout")));
     }
 
     protected void waitUntilElement_IsClickable(WebElement element, int timeSec) {

@@ -22,7 +22,7 @@ public class ShippingOrderPage extends OrderPage {
     }
 
     public void clickYouMustAgreePopupDivCloseButton() {
-        waitUntilElement_IsClickable(youMustAgreePopupDivCloseButton, 2);
+        waitUntilElement_IsClickable(youMustAgreePopupDivCloseButton);
         youMustAgreePopupDivCloseButton.click();
     }
 

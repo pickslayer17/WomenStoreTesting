@@ -28,6 +28,6 @@ public class MyAccountPage extends AbstractPage {
     }
 
     public void waitPageUrlEqualsToCurrent() {
-        waitUntilUrlToBe(PAGE_URL, 10);
+        waitUntilUrlToBe(PAGE_URL);
     }
 }

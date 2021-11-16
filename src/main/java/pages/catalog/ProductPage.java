@@ -25,7 +25,7 @@ public class ProductPage extends AbstractPage {
     }
 
     public void clickProceedToCheckOutButton() {
-        waitUntilElement_IsClickable(proceedToCheckOutButton, 3);
+        waitUntilElement_IsClickable(proceedToCheckOutButton);
         proceedToCheckOutButton.click();
     }
 

@@ -39,7 +39,7 @@ public class ScreenshotAfterTextExecution implements AfterTestExecutionCallback 
     }
 
     @Override
-    public void afterTestExecution(ExtensionContext extensionContext)  {
+    public void afterTestExecution(ExtensionContext extensionContext) {
         Method testMethod = extensionContext.getRequiredTestMethod();
         boolean testFailed = extensionContext.getExecutionException().isPresent();
         if (testFailed) {

@@ -107,6 +107,6 @@ public class CreateAnAccountPage extends AbstractPage {
     }
 
     public void waitUntilGenderMaleRadioIsDisplayed() {
-        waitUntilElement_IsDisplayed(maleRadioButton, 10);
+        waitUntilElement_IsDisplayed(maleRadioButton);
     }
 }

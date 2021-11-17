@@ -124,7 +124,7 @@
                 <version>${maven-failsafe-plugin.version}</version>
                 <configuration>
                     <includes>
-                        <include>RegisterPositiveIT.java</include>
+                        <include>DressBuyingPositiveIT.java</include>
                     </includes>
                     <forkCount>3</forkCount>
                     <reuseForks>true</reuseForks>

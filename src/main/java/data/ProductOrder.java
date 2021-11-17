@@ -66,4 +66,16 @@ public class ProductOrder {
     public void setTotalWithShipping(double totalWithShipping) {
         this.totalWithShipping = totalWithShipping;
     }
+
+    @Override
+    public String toString(){
+        return "Price: " + String.valueOf(unitPrice) + "; " +
+                "Quantity: " + String.valueOf(quantity) + "; " +
+                "Total price: " + String.valueOf(total) + "; " +
+                "Shipping: " + String.valueOf(totalShipping) + "; " +
+                "Total price with shipping: " + String.valueOf(totalWithShipping) + ";";
+
+
+
+    }
 }

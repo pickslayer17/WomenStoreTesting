@@ -1,6 +1,5 @@
 import data.User;
-import io.qameta.allure.Allure;
-import io.qameta.allure.Step;
+import io.qameta.allure.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -9,7 +8,11 @@ import org.junit.jupiter.api.Test;
 @Order(2)
 public class SignInPositiveIT extends AbstractBaseTest {
 
+    @Epic("Smoke test")
+    @Feature("Account validation")
+    @Story("Login existed account")
     @Test
+    @Severity(SeverityLevel.CRITICAL)
     public void signInPositive() {
         goToSignInPage("http://automationpractice.com/");
 
@@ -25,7 +28,7 @@ public class SignInPositiveIT extends AbstractBaseTest {
         App().Pages().HomePage().clickSignInButton();
     }
 
-    @Step("Type user email and password. And Click sign in")
+    @Step("Enter user email and password. And Click sign in")
     private void singInUser(String eMail, String password) {
         App().Pages().AuthenticationPage().fillEmailAddress(eMail);
         App().Pages().AuthenticationPage().fillPassword(password);

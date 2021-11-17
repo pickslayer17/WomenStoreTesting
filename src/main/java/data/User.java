@@ -110,4 +110,9 @@ public class User {
     public void setHomePhone(String homePhone) {
         this.homePhone = homePhone;
     }
+
+    @Override
+    public String toString(){
+        return email;
+    }
 }

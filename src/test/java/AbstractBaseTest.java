@@ -1,5 +1,6 @@
 import Extensions.ScreenshotAfterTextExecution;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import io.qameta.allure.Allure;
 import lib.AppLib;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;

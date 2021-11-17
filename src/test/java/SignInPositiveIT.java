@@ -1,4 +1,6 @@
 import data.User;
+import io.qameta.allure.Allure;
+import io.qameta.allure.Step;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -9,16 +11,34 @@ public class SignInPositiveIT extends AbstractBaseTest {
 
     @Test
     public void signInPositive() {
-        App().Flow().navigateToUrl("http://automationpractice.com/");
-        App().Pages().HomePage().clickSignInButton();
+        goToSignInPage("http://automationpractice.com/");
 
         User user = DataProvider.getUser();
+        singInUser(user.getEmail(), user.getPassword());
 
-        App().Pages().AuthenticationPage().fillEmailAddress(user.getEmail());
-        App().Pages().AuthenticationPage().fillPassword(user.getPassword());
+        verifySignInSuccess();
+    }
+
+    @Step("Go to HomePage url and click sign in button")
+    private void goToSignInPage(String url) {
+        App().Flow().navigateToUrl(url);
+        App().Pages().HomePage().clickSignInButton();
+    }
+
+    @Step("Type user email and password. And Click sign in")
+    private void singInUser(String eMail, String password) {
+        App().Pages().AuthenticationPage().fillEmailAddress(eMail);
+        App().Pages().AuthenticationPage().fillPassword(password);
         App().Pages().AuthenticationPage().clickSignInButton();
+    }
 
+    @Step("Verify current url corresponds to expected")
+    private void verifySignInSuccess() {
         App().Pages().MyAccountPage().waitPageUrlEqualsToCurrent();
-        Assertions.assertEquals(App().Pages().MyAccountPage().getPAGE_URL(), App().Flow().getCurrentUrl());
+        String currentUrl = App().Flow().getCurrentUrl();
+        String expectedUrl = App().Pages().MyAccountPage().getPAGE_URL();
+        Allure.addAttachment("Current url", "text/plain", currentUrl);
+        Allure.addAttachment("Expected url", "text/plain", expectedUrl);
+        Assertions.assertEquals(expectedUrl, currentUrl);
     }
 }

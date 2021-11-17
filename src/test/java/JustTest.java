@@ -1,11 +1,15 @@
 import io.qameta.allure.Step;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 
 public class JustTest {
 
-
+    @BeforeEach
+    public void setUp() {
+        System.out.println("Just simply setup this shit");
+    }
 
     @Test
     public void testingTest() {

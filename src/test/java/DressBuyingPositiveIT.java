@@ -21,16 +21,18 @@ public class DressBuyingPositiveIT extends AbstractBaseTest {
         singInUser(user.getEmail(), user.getPassword());
 
         chooseADress();
-        ProductOrder initialOrder = new ProductOrder();
-        setQuantity(3, initialOrder);
+        ProductOrder expectedOrder = setQuantityAndGetExpectedOrderData(3);
         clickBuyAndProceed();
-        ProductOrder orderPageOrder = new ProductOrder();
-        verifyProductPriceSummaryPage(initialOrder, orderPageOrder);
+        ProductOrder orderPageOrder = getOrderPageOrderData();
+        expectedOrder.setTotalShipping(orderPageOrder.getTotalShipping());//set shipping
+        expectedOrder.calculateTotalWithShipping();//calculate total with shipping price
+
+        verifyProductPriceSummaryPage(expectedOrder, orderPageOrder);
         proceedFromSummaryToShipping();
         verifyAgreeTermsCheckBox();
         clickCheckboxAndProceed();
-        proceedFromShippingToCheckPaymentAndVerify(initialOrder);
-        submitOrderAdnVerify(initialOrder);
+        proceedFromShippingToCheckPaymentAndVerify(expectedOrder);
+        submitOrderAdnVerify(expectedOrder);
     }
 
     @Step("Go to HomePage url and click sign in button")
@@ -55,12 +57,15 @@ public class DressBuyingPositiveIT extends AbstractBaseTest {
     }
 
 
-    @Step("Set dress quantity: {quantity}. Calculate sum")
-    private void setQuantity(int quantity, ProductOrder productOrder){
+    @Step("Set dress quantity: {quantity}. Get order data without shipping for future comparing")
+    private ProductOrder setQuantityAndGetExpectedOrderData(int quantity){
+        ProductOrder expectedOrder = new ProductOrder();
         App().Pages().ProductPage().setQuantityInput(quantity);
-        productOrder.setUnitPrice(App().Pages().ProductPage().getPriceDisplaySpanText());
-        productOrder.setQuantity(quantity);
-        productOrder.calculateTotal();
+        expectedOrder.setUnitPrice(App().Pages().ProductPage().getPriceDisplaySpanText());
+        expectedOrder.setQuantity(quantity);
+        expectedOrder.calculateTotal();
+        Allure.addAttachment("Expected order", "text/plain", expectedOrder.toString());
+        return expectedOrder;
     }
 
     @Step("Click \"Buy\" button and click \"Proceed to checkout\" button")
@@ -69,34 +74,23 @@ public class DressBuyingPositiveIT extends AbstractBaseTest {
         App().Pages().ProductPage().clickProceedToCheckOutButton();
     }
 
+    @Step
+    private ProductOrder getOrderPageOrderData(){
+        ProductOrder orderPageOrder = new ProductOrder();
+        orderPageOrder.setUnitPrice(App().Pages().OrderPages().SummaryOrderPage().getProductPriceSpanText());
+        orderPageOrder.setQuantity(App().Pages().OrderPages().SummaryOrderPage().getQuantityInputText());
+        orderPageOrder.setTotal(App().Pages().OrderPages().SummaryOrderPage().getTotalSpanText());
+        orderPageOrder.setTotalShipping(App().Pages().OrderPages().SummaryOrderPage().getTotalShippingText());
+        orderPageOrder.setTotalWithShipping(App().Pages().OrderPages().SummaryOrderPage().getTotalWithShippingText());
+        return orderPageOrder;
+    }
+
     @Step("Verify expected prices and current on the page")
     private void verifyProductPriceSummaryPage(ProductOrder expectedOrder, ProductOrder currentOrder){
-        currentOrder.setUnitPrice(App().Pages().OrderPages().SummaryOrderPage().getProductPriceSpanText());
-        currentOrder.setQuantity(App().Pages().OrderPages().SummaryOrderPage().getQuantityInputText());
-        currentOrder.setTotal(App().Pages().OrderPages().SummaryOrderPage().getTotalSpanText());
-        currentOrder.setTotalShipping(App().Pages().OrderPages().SummaryOrderPage().getTotalShippingText());
-        currentOrder.setTotalWithShipping(App().Pages().OrderPages().SummaryOrderPage().getTotalWithShippingText());
-        expectedOrder.setTotalShipping(currentOrder.getTotalShipping());
-        expectedOrder.calculateTotalWithShipping();
-
-
-        Assertions.assertEquals(
-                expectedOrder.getUnitPrice(), currentOrder.getUnitPrice(),
-                "Price on the OrderPage isn't correct"
+        Assertions.assertTrue(
+                expectedOrder.equals(currentOrder),
+                "Current order data doesn't correspond to expected"
         );
-        Assertions.assertEquals(
-                expectedOrder.getQuantity(), currentOrder.getQuantity(),
-                "Quantity on OrderPage isn't correct"
-        );
-        Assertions.assertEquals(
-                expectedOrder.getTotal(), currentOrder.getTotal(),
-                "Total price on OrderPage isn't correct"
-        );
-        Assertions.assertEquals(
-                expectedOrder.getTotalWithShipping(), currentOrder.getTotalWithShipping(),
-                "Total price With shipping on OrderPage isn't correct"
-        );
-
     }
 
     @Step("Click \"Proceed\" button 2 times for get Shipping page")

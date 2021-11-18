@@ -41,36 +41,39 @@ public class RegisterPositiveIT extends AbstractBaseTest {
     @Step("Enter necessary fields and click \"Register\" button")
     private void fillAccountData(User user) {
         App().Pages().CreateAnAccountPage().waitUntilGenderMaleRadioIsDisplayed();
-        userData(user);
-        App().Pages().CreateAnAccountPage().fillGender(user.getGender());
-        App().Pages().CreateAnAccountPage().fillCustomerFirstName(user.getFirstName());
-        App().Pages().CreateAnAccountPage().fillCustomerLastName(user.getLastName());
-        App().Pages().CreateAnAccountPage().fillPassword(user.getPassword());
-        App().Pages().CreateAnAccountPage().fillDateOfBirth(user.getDateOfBirth());
-        App().Pages().CreateAnAccountPage().fillCompany(user.getCompany());
-        App().Pages().CreateAnAccountPage().fillAddress(user.getAddress());
-        App().Pages().CreateAnAccountPage().fillCity(user.getCity());
-        App().Pages().CreateAnAccountPage().fillState(user.getState());
-        App().Pages().CreateAnAccountPage().fillZip(user.getZip());
-        App().Pages().CreateAnAccountPage().fillHomePhone(user.getHomePhone());
+        StringBuilder sb = new StringBuilder();
+        try {
+            sb.append("Gender: " + user.getGender() + "\n");
+            App().Pages().CreateAnAccountPage().fillGender(user.getGender());
+            sb.append("First name: " + user.getFirstName() + "\n");
+            App().Pages().CreateAnAccountPage().fillCustomerFirstName(user.getFirstName());
+            sb.append("Last name: " + user.getLastName() + "\n");
+            App().Pages().CreateAnAccountPage().fillCustomerLastName(user.getLastName());
+            sb.append("Password: " + user.getPassword() + "\n");
+            App().Pages().CreateAnAccountPage().fillPassword(user.getPassword());
+            sb.append("Date of Birth: " + user.getDateOfBirth() + "\n");
+            App().Pages().CreateAnAccountPage().fillDateOfBirth(user.getDateOfBirth());
+            sb.append("Company: " + user.getCompany() + "\n");
+            App().Pages().CreateAnAccountPage().fillCompany(user.getCompany());
+            sb.append("Address: " + user.getAddress() + "\n");
+            App().Pages().CreateAnAccountPage().fillAddress(user.getAddress());
+            sb.append("City: " + user.getCity() + "\n");
+            App().Pages().CreateAnAccountPage().fillCity(user.getCity());
+            sb.append("State: " + user.getState() + "\n");
+            App().Pages().CreateAnAccountPage().fillState(user.getState());
+            sb.append("Zip: " + user.getZip() + "\n");
+            App().Pages().CreateAnAccountPage().fillZip(user.getZip());
+            sb.append("Home phone: " + user.getHomePhone() + "\n");
+            App().Pages().CreateAnAccountPage().fillHomePhone(user.getHomePhone());
+        } catch (Exception exception) {
+            throw exception;
+        } finally {
+            Allure.addAttachment("User data", "", sb.toString());
+        }
+
         App().Pages().CreateAnAccountPage().register();
     }
 
-    @Attachment
-    private String userData(User user){
-        StringBuilder sb = new StringBuilder();
-        sb.append("Gender: " + user.getGender() + "\n");
-        sb.append("First name: " + user.getFirstName() + "\n");
-        sb.append("Last name: " + user.getLastName() + "\n");
-        sb.append("Password: " + user.getPassword() + "\n");
-        sb.append("Date of Birth: " + user.getCompany() + "\n");
-        sb.append("Address: " + user.getAddress() + "\n");
-        sb.append("City: " + user.getCity() + "\n");
-        sb.append("State: " + user.getState() + "\n");
-        sb.append("Zip: " + user.getZip() + "\n");
-        sb.append("Home phone: " + user.getHomePhone() + "\n");
-        return sb.toString();
-    }
 
     @Step("Verify current url corresponds to expected")
     private void verifyRegisterSuccess() {

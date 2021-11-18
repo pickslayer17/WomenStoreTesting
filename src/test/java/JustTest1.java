@@ -4,7 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 
-public class JustTest {
+public class JustTest1 {
 
     @BeforeEach
     public void setUp() {

@@ -1,15 +1,12 @@
 import io.qameta.allure.Step;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.UUID;
 
-public class JustTest1 {
 
-    @BeforeEach
-    public void setUp() {
-        System.out.println("Just simply setup this shit");
-    }
+public class JustTest {
+
 
     @Test
     public void testingTest() {
@@ -18,6 +15,9 @@ public class JustTest1 {
         System.out.println("Oh my GOD!!!!!");
         System.out.println();
         System.out.println();
+        System.out.println(UUID.randomUUID().toString());
+
+
         step1();
     }
     @Step

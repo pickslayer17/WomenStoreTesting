@@ -1,6 +1,7 @@
 import Extensions.ScreenshotAfterTextExecution;
+import Extensions.ScreenshotAllureAttacher;
+import data.Properties;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import io.qameta.allure.Allure;
 import lib.AppLib;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -14,6 +15,8 @@ public abstract class AbstractBaseTest {
 
     @RegisterExtension
     ScreenshotAfterTextExecution screenshotAfterTextExecution = new ScreenshotAfterTextExecution();
+    @RegisterExtension
+    ScreenshotAllureAttacher screenshotAllureAttacher = new ScreenshotAllureAttacher();
     private WebDriver driver;
     private AppLib app;
 
@@ -31,7 +34,8 @@ public abstract class AbstractBaseTest {
         driver = new ChromeDriver(options);
         app = new AppLib(driver);
         screenshotAfterTextExecution.setDriver(driver);
-        screenshotAfterTextExecution.setPath("target/failsafe-reports");
+        screenshotAfterTextExecution.setPath(Properties.getInstance().getPropertyByKey("screenshot_target"));
+        screenshotAllureAttacher.setScreenshotAfterTextExecution(screenshotAfterTextExecution);
     }
 
     @AfterEach
